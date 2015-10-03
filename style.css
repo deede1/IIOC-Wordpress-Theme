@@ -6,3 +6,9 @@ Template: cannyon
 */
 
 /* write custom css */
+
+footer div.mythemes-social a.icon-youtube{ background: red; }
+.footer-row h2 {color: #636363;}
+.footer-row ul {list-style:none; padding:0;margin:0;}
+.footer-row ul a {color:#8D9497; cursor:pointer;}
+.footer-row ul a:hover{color:white;}
