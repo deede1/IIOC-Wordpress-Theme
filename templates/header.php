@@ -74,56 +74,55 @@
 ?>
 
 <div class="mythemes-header mythemes-bkg-image overflow-wrapper <?php echo esc_attr( $mythemes_header_class ); ?>" style="height: <?php echo absint( $header_height ); ?>px;">
-    <div class="valign-cell-wrapper" style="background: rgba( <?php echo mythemes_tools::hex2rgb( esc_attr( $header_mask_color ) ); ?>, <?php echo floatval( $header_mask_opacity ); ?> );">
+    <div style="background: rgba( <?php echo mythemes_tools::hex2rgb( esc_attr( $header_mask_color ) ); ?>, <?php echo floatval( $header_mask_opacity ); ?> );">
 
-        <!-- VERTICAL ALIGN CENTER -->
-        <div class="valign-cell">
-            
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <?php
+                    $args = array(
+                         'post_type' => 'slide',
+                         'post_per_page' => -1
+                    );   
+
+                    $slides = new WP_Query( $args);
+            ?>
+
+
+            <?php if($slides-> have_posts()) {  ?>
+                        <div id="main-carousel" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
-                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#myCarousel" data-slide-to="1"></li>
-                                <li data-target="#myCarousel" data-slide-to="2"></li>
-                                <li data-target="#myCarousel" data-slide-to="3"></li>
+                                <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#main-carousel" data-slide-to="1"></li>
+                                <li data-target="#main-carousel" data-slide-to="2"></li>
                             </ol>
-
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner" role="listbox">
-                                <div class="item active">
-                                    <img  img-responsive src="http://localhost:8080/wordpress/wp-content/uploads/2015/09/Hydrangeas.jpg" alt="Chania">
-                                    <div class="carousel-caption">
-                                        <h3>Chania</h3>
-                                        <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                                    </div> 
-                                </div>
-                                <div class="item">
-                                    <img class="img-responsive" src="http://localhost:8080/wordpress/wp-content/uploads/2015/09/Penguins.jpg" alt="Flower">
-                                    <div class="carousel-caption">
-                                        <h3>Flowers</h3>
-                                        <p>Beatiful flowers in Kolymbari, Crete.</p>
-                                    </div>
-                                </div>
-
-                               
-                            </div>
-
-                            <!-- Left and right controls -->
-                            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                             <!-- Wrapper for slides -->
+                             <div class="carousel-inner" role="listbox">
+                            <?php $j = 0; while ($slides -> have_posts())
+                                {
+                                    $slides -> the_post();
+                            ?>    
+                                   
+                                        <div class="item <?php if($j == 0) { echo 'active'; }?>">
+                                            <?php the_post_thumbnail('slides'); ?>
+                                            <div class="carousel-caption">
+                                                <h4><?php the_title();?></h4>
+                                            </div>
+                                        </div>
+                                   
+                             <?php $j++; 
+                                }
+                            ?>    
+                             </div>   
+                            <!-- Controls -->
+                            <a class="left carousel-control" href="#main-carousel" role="button" data-slide="prev">
+                                <span class="icon-angle-left" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <a class="right carousel-control" href="#main-carousel" role="button" data-slide="next">
+                                <span class="icon-angle-right" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
-                    </div>
-                </div>
-                
-        </div>
+                    <?php  wp_reset_postdata();  } ?>   
     </div>
 
     <div class="valign-bottom-cell-wrapper header-button-wrapper">

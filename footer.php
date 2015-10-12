@@ -1,135 +1,56 @@
         <footer>
-        
-             <aside class="mythemes-default-content <?php echo esc_attr( $items_class ); ?>">
-                     <div class="container">
-                            <div class="row footer-row">
-                                <div class=" col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                    <h2>About US</h2>
-                                    <ul>
-                                      <li><a>Mission & Vision</a></li>
-                                      <li>
-                                        <a>contact Us</a>
-                                      </li>
-                                      <li>
-                                        <a>Directions</a>
-                                      </li>
-                                      <li>
-                                        <a>Committees</a>
-                                      </li>
-                                      <li>
-                                        <a>History</a>
-                                      </li>
-                                      <li>
-                                        <a>Shaykh Mohammed</a>
-                                      </li>
-                                      <li>
-                                        <a>Shaykh Ummar</a>
-                                      </li>
-                                     
-                                    </ul>
+            <?php
+                global $wp_customize;
+
+                $are_active_sidebras =  is_active_sidebar( 'footer-first' ) ||
+                                        is_active_sidebar( 'footer-second' ) ||
+                                        is_active_sidebar( 'footer-third' ) ||
+                                        is_active_sidebar( 'footer-fourth' );
+
+                $items_class = '';
+
+                /* WP CUSTOMIZE */
+                if( isset( $wp_customize ) ){
+                    $items = true;
+                    $items_class = !($are_active_sidebras || (bool)get_theme_mod( 'mythemes-default-content', true ) ) ? 'hidden' : '';
+                }
+
+                /* FRONTEND */
+                else{
+                    $items = $are_active_sidebras || (bool)get_theme_mod( 'mythemes-default-content', true );
+                }
+                
+                if( $items ){
+            ?>
+                    <aside class="mythemes-default-content <?php echo esc_attr( $items_class ); ?>">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                    <?php get_sidebar( 'footer-first' ); ?>
                                 </div>
-                                <div class=" col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                  <h2>IIOC</h2>
-                                  <ul>
-                                    <li>
-                                      <a>Events Calendar</a>
-                                    </li>
-                                    <li>
-                                      <a>Weekly Bulletin</a>
-                                    </li>
-                                    <li>
-                                      <a>Community News</a>
-                                    </li>
-                                    <li>
-                                      <a>Community Appeals</a>
-                                    </li>
-                                  </ul>
+                                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                    <?php get_sidebar( 'footer-second' ); ?>
                                 </div>
-                                <div class=" col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                <h2>Media</h2>
-                                <ul>
-                                  <li>
-                                    <a>Video Archives</a>
-                                  </li>
-                                  <li>
-                                    <a>e-Library</a>
-                                  </li>
-                                  <li>
-                                    <a>IIOCTV @ Youtube</a>
-                                  </li>
-                                  <li>
-                                    <a>Photo Gallery</a>
-                                  </li>
-                                  <li>
-                                    <a>Livestream</a>
-                                  </li>
-                                </ul>
-                              </div>
-                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                  <h2>Youth</h2>
-                                  <ul>
-                                    <li>
-                                      <a>Our Mission</a>
-                                    </li>
-                                    <li>
-                                      <a>Our Events</a>
-                                    </li>
-                                    <li>
-                                      <a>Friday Night YG Registration</a>
-                                    </li>
-                                    <li>
-                                      <a>The youth Committe & Mentors</a>
-                                    </li>
-                                    <li>
-                                      <a>Youth Internship Programs</a>
-                                    </li>
-                                    <li>
-                                      <a>Do The Right Thing Award</a>
-                                    </li>
-                                  </ul>
+                                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                    <?php get_sidebar( 'footer-third' ); ?>
                                 </div>
-                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                  <h2>Get Involved</h2>
-                                  <ul>
-                                    <li>
-                                      <a>Bi-annual Blood Drive</a>
-                                    </li>
-                                    <li>
-                                      <a>Opereation:Bown Paper Bag with ICNA</a>
-                                    </li>
-                                    <li>
-                                      <a>Volunteer!</a>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                  <h2>Outreach</h2>
-                                  <ul>
-                                    <li>
-                                      <a>Take a Tour!</a>
-                                    </li>
-                                    <li>
-                                      <a>Prison Outreach</a>
-                                    </li>
-                                    <li>
-                                      <a>New & Recommitted Muslim Group</a>
-                                    </li>
-                                    <li>
-                                      <a>Newsletters & Volunteer Signups</a>
-                                    </li>
-                                  </ul>
+                                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                    <?php get_sidebar( 'footer-fourth' ); ?>
                                 </div>
                             </div>
-                    </div>
-             </aside>
-        
+                        </div>
+                    </aside>
+            <?php
+                }
+            ?>
+
             <div class="mythemes-dark-mask">
                 <div class="container mythemes-social">
                     <div class="row">
                         <?php
-                            $youtube    = esc_url( get_theme_mod( 'mythemes-youtube', 'http://youtube.com/#' ) );
-                            $twitter    = esc_url( get_theme_mod( 'mythemes-twitter', 'http://twitter.com/#' ) );
-                            $facebook   = esc_url( get_theme_mod( 'mythemes-facebook', 'http://facebook.com/#' ) );
+                            $youtube    = esc_url( get_theme_mod( 'mythemes-youtube', 'https://www.youtube.com/channel/UCu6Wv5Z104wOB0SpFcaGNow' ) );
+                            $twitter    = esc_url( get_theme_mod( 'mythemes-twitter', 'https://twitter.com/#' ) );
+                            $facebook   = esc_url( get_theme_mod( 'mythemes-facebook', 'https://www.facebook.com/#' ) );
                             $rss        = esc_url( get_theme_mod( 'mythemes-rss', esc_url( get_bloginfo('rss2_url') ) ) );
 
                             if( isset( $wp_customize ) ) {

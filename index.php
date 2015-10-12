@@ -21,7 +21,6 @@
     <div class="content">
         <div class="container">
             <div class="row">
-        
                 <?php get_template_part( 'templates/loop' ); ?>
 
             </div>
