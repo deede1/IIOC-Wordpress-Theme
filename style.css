@@ -23,6 +23,7 @@ footer div.mythemes-social a.icon-youtube{ background: red; }
 .footer-row ul a {color:#8D9497; cursor:pointer;}
 .footer-row ul a:hover{color:white;}
 
+
 #text-2 strong {
     float: left;
 }
@@ -98,6 +99,7 @@ a.readmore-link:hover
 }
 
 
+
 .menu-item.search .navbar-form
 {
 	margin: 0;
@@ -132,4 +134,7 @@ a.readmore-link:hover
 	box-shadow:none;
 	-webkit-box-shadow:none; 
 	border-color:#cccccc; 
+
 }
+
+

@@ -11,29 +11,49 @@ function themify_custom_enqueue_child_theme_styles()
 add_action( 'wp_enqueue_scripts', 'themify_custom_enqueue_child_theme_styles' );
 
 register_sidebar(array(
-    'id'            => 'front-page-header-fourth',
-    'name'          => __( 'Header - Fourth Front Page Sidebar' , 'iioc' ),
-    'description'   => __( 'Content for right front page header Sidebar' , 'iioc' ),
-    'before_widget' => '<div id="%1$s" class="widget %2$s">',
-    'after_widget'  => '</div>',
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>'
+	'id'            => 'front-page-header-fourth',
+	'name'          => __( 'Header - Fourth Front Page Sidebar' , 'iioc' ),
+	'description'   => __( 'Content for right front page header Sidebar' , 'iioc' ),
+	'before_widget' => '<div id="%1$s" class="widget %2$s">',
+	'after_widget'  => '</div>',
+	'before_title'  => '<h3>',
+	'after_title'   => '</h3>'
 ));
 register_sidebar(array(
-    'id'            => 'front-page-header-fifth',
-    'name'          => __( 'Header - Fifth Front Page Sidebar' , 'iioc' ),
-    'description'   => __( 'Content for right front page header Sidebar' , 'iioc' ),
-    'before_widget' => '<div id="%1$s" class="widget %2$s">',
-    'after_widget'  => '</div>',
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>'
+	'id'            => 'front-page-header-fifth',
+	'name'          => __( 'Header - Fifth Front Page Sidebar' , 'iioc' ),
+	'description'   => __( 'Content for right front page header Sidebar' , 'iioc' ),
+	'before_widget' => '<div id="%1$s" class="widget %2$s">',
+	'after_widget'  => '</div>',
+	'before_title'  => '<h3>',
+	'after_title'   => '</h3>'
 ));
 register_sidebar(array(
-    'id'            => 'front-page-header-sixth',
-    'name'          => __( 'Header - Sixth Front Page Sidebar' , 'iioc' ),
-    'description'   => __( 'Content for right front page header Sidebar' , 'iioc' ),
-    'before_widget' => '<div id="%1$s" class="widget %2$s">',
-    'after_widget'  => '</div>',
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>'
+	'id'            => 'front-page-header-sixth',
+	'name'          => __( 'Header - Sixth Front Page Sidebar' , 'iioc' ),
+	'description'   => __( 'Content for right front page header Sidebar' , 'iioc' ),
+	'before_widget' => '<div id="%1$s" class="widget %2$s">',
+	'after_widget'  => '</div>',
+	'before_title'  => '<h3>',
+	'after_title'   => '</h3>'
 ));
+
+function add_search_to_wp_menu ( $items, $args )
+{
+	if( 'header' === $args -> theme_location )
+	{
+		$items .= '<li class="menu-item search">';
+		$items .= '<form class="navbar-form navbar-right" role="search" method="get" action="' . get_bloginfo('home') . '/">';
+		$items .= '<div class="input-group add-on">';
+		$items .= '<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">';
+		$items .= '<div class="input-group-btn">';
+		$items .= '<button class="btn btn-default" type="submit"><i class="icon-search-5"></i></button>';
+		$items .= '</div>';
+		$items .= '</div>';
+		$items .= '</form>';
+		$items .= '</li>';
+	}
+	return $items;
+}
+
+add_filter('wp_nav_menu_items','add_search_to_wp_menu',10,2);

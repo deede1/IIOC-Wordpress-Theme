@@ -127,19 +127,19 @@
 
                                                 // Search item
                                                 echo $submenu;
-                                                echo '<li class="menu-item search">';
-                                                ?>
-                                                <form class="navbar-form navbar-right" role="search">
-                                                    <div class="input-group add-on">
-                                                      <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-                                                      <div class="input-group-btn">
-                                                        <button class="btn btn-default" type="submit"><i class="icon-search-5"></i></button>
-                                                    </div>
-                                                     </div>
-                                                </form>
-                                                <?php
                                                 echo '</li>';
-
+                                                ?>
+                                                <li class="menu-item search">
+                                                    <form class="navbar-form navbar-right" role="search" method="get" action="<?php get_bloginfo('home');?>/">
+                                                        <div class="input-group add-on">
+                                                          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                                                          <div class="input-group-btn">
+                                                              <button class="btn btn-default" type="submit"><i class="icon-search-5"></i></button>
+                                                          </div>
+                                                        </div>
+                                                    </form>
+                                                </li>
+                                                <?php
                                                 echo '</ul>';
                                                 echo '</div>';
                                             }
