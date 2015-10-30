@@ -6,6 +6,7 @@
         <link rel="profile" href="http://gmpg.org/xfn/11" />
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
         <?php wp_head(); ?>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
     <body <?php body_class(); ?>>
         
@@ -86,53 +87,67 @@
                             ?>
                         </div>
 
-                        <div class="mythemes-header-menu">
-                            <!-- TOPPER MENU -->
-                            <nav class="mythemes-nav-inline base-nav header-nav nav-collapse">
+                        <div class="mythemes-header-menu" style="position: relative;">
 
-                                <div class="nav-pre-wrapper">
+                            <!-- TOPPER MENU -->
+                            <nav class="mythemes-navigation header-menu nav-collapse">
+
+                                <div class="menu-list-pre-wrapper">
                                     <button type="button" class="btn-collapse"><i class="icon-cancel-2"></i></button>
 
                                     <?php
                                         $args = array(
                                             'theme_location'    => 'header',
-                                            'container_class'   => 'nav-wrapper',
-                                            'menu_class'        => 'mythemes-menu'
+                                            'container_class'   => 'menu-list-wrapper',
+                                            'menu_class'        => 'mythemes-menu-list'
                                         );
                                         
                                         $location = get_nav_menu_locations();
-
                                         if( isset( $location[ 'header' ] ) && $location[ 'header' ] > 0 ){
                                             wp_nav_menu( $args );
                                         }else{
                                             $pages = get_posts( array(
-                                                'numberposts' => 7,
-                                                'post_type' => 'page',
-                                                'order' => 'ASC'
-                                            ));
+                                                'numberposts'   => 7,
+                                                'post_type'     => 'page',
+                                                'order'         => 'ASC'
+                                            ) );
                                             
                                             if( !empty( $pages ) ){
-                                                echo '<div class="nav-wrapper">';
-                                                echo '<ul class="mythemes-menu">';
+                                                echo '<div class="menu-list-wrapper">';
+                                                echo '<ul class="mythemes-menu-list">';
 
                                                 foreach( $pages as $p => $item ){
-                                                    $classes = '';
-                                                    if( is_page( $item -> ID ) )
+                                                    $classes                = '';
+                                                    $mythemes_curr_ancestor = false;
+
+                                                    if( $item -> post_parent > 0 ){
+                                                        continue;
+                                                    }
+
+                                                    if( is_page( $item -> ID ) ||  ( $item -> ID === absint( get_option( 'page_for_posts' ) ) && is_home() ) ){
                                                         $classes = 'current-menu-item';
+                                                    }
+
+                                                    $submenu = mythemes_tools::submenu( $item -> ID );
+
+                                                    if( !empty( $submenu ) ){
+                                                        $classes .= ' menu-item-has-children';
+
+                                                        if( $mythemes_curr_ancestor  ){
+                                                            $classes .= ' current-menu-ancestor';
+                                                        }
+                                                    }
                                                         
-                                                    echo '<li class="menu-item ' . $classes . '">';
-                                                    echo '<a href="' . esc_url( get_permalink( $item -> ID ) ) . '" title="' . esc_attr( mythemes_post::title( $item -> ID, true ) ) . '">' . mythemes_post::title( $item -> ID ) . '</a></li>';
-                                                }
+                                                    echo '<li class="menu-item ' . esc_attr( $classes ) . '">';
+                                                    echo '<a href="' . esc_url( get_permalink( $item -> ID ) ) . '" title="' . mythemes_tools::title( $item -> ID, true ) . '">' . mythemes_tools::title( $item -> ID ) . '</a>';
+                                                    echo $submenu;
+                                                    echo '</li>';
 
-
-                                                // Search item
-                                                echo $submenu;
-                                                echo '</li>';
-                                                ?>
+ ?>
                                                 <li class="menu-item search">
-                                                    <form class="navbar-form navbar-right" role="search" method="get" action="<?php get_bloginfo('home');?>/">
+                                                    <form class="navbar-form" role="search" action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get" id="searchform">
                                                         <div class="input-group add-on">
-                                                          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                                                          <input type="text" class="form-control" placeholder="Search" name="s" id="keywords" value="<?php _e( 'type here...' , 'cannyon' ); ?>" onfocus="if (this.value == '<?php _e( 'type here...' , 'cannyon' ); ?>') {this.value = '';}" onblur="if (this.value == '') {this.value = '<?php _e( 'type here...' , 'cannyon' ); ?>';}">
                                                           <div class="input-group-btn">
                                                               <button class="btn btn-default" type="submit"><i class="icon-search-5"></i></button>
                                                           </div>
@@ -140,15 +155,19 @@
                                                     </form>
                                                 </li>
                                                 <?php
+
+
+                                                    
+                                                }
                                                 echo '</ul>';
                                                 echo '</div>';
                                             }
                                         }
                                     ?>
                                 </div>
-                                <div class="visible-nav"></div>
+                                <div class="mythemes-visible-navigation"></div>
                             </nav>
-                            <div class="dark-mask"></div>
+
                         </div>
 
                     </div>
@@ -157,8 +176,6 @@
             </div>
 
             <?php
-
-                global $wp_customize, $mythemes_header_class;
                 $show_header    = false;
 
                 /* FRONT PAGE */
@@ -178,39 +195,24 @@
 
                 if( $is_front_page && $on_front_page ){
                     $show_header = true;
-                    $mythemes_header_class = 'on-front-page';
                 }
                 else if( $is_front_page && !$on_front_page ){
                     $show_header = false;
-                    $mythemes_header_class = 'on-front-page';   
                 }
                 else if( $is_blog_page && $on_blog_page ){
                     $show_header = true;
-                    $mythemes_header_class = 'on-blog-page';
                 }
                 else if( $is_blog_page && !$on_blog_page ){
                     $show_header = false;
-                    $mythemes_header_class = 'on-blog-page';
                 }
                 else if( is_singular( 'post' ) ){
                     $show_header = get_theme_mod( 'mythemes-header-single-posts', true );
-                    $mythemes_header_class = 'on-single-posts';
                 }
                 else if( is_singular( 'page' ) && ! $is_front_page ){
                     $show_header = get_theme_mod( 'mythemes-header-single-pages', true );
-                    $mythemes_header_class = 'on-single-pages';
                 }
                 else{
                     $show_header = get_theme_mod( 'mythemes-header-templates', true );
-                    $mythemes_header_class = 'on-templates';
-                }
-
-                /* CUSTOMIZER */
-                if( isset( $wp_customize ) ) {
-                    if( !$show_header ){
-                        $mythemes_header_class .= ' hidden';
-                        $show_header = true;
-                    }
                 }
 
                 if( $show_header ){

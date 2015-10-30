@@ -26,7 +26,7 @@ Template Name:page-template-main
         <?php
             }
         ?>
-            <div class="content page-content" id="iioc-content"">
+            <div class="content page-content" id="iioc-content">
                 <div class="container">
                     <div class="row">
                     <?php
@@ -34,71 +34,27 @@ Template Name:page-template-main
 
                         $settings = 'page';
 
-                        if( get_theme_mod( 'mythemes-special-page' , 2 ) == $post -> ID ){
+                        if( get_theme_mod( 'mythemes-special-page' , 2 ) == $post -> ID )
+                        {
                             $settings = 'special-page';                            
                         }
 
                         /* GET LAYOUT DETAILS */
                         $mythemes_layout = new mythemes_layout( $settings );
-
-                        /* LEFT SIDEBAR */
-                        $mythemes_layout -> sidebar( 'left' );
                     ?>
                         <!-- CONTENT -->
-                        <section class="<?php echo $mythemes_layout -> classes(); ?>">
+                            <section class="<?php echo $mythemes_layout -> classes(); ?> ">
 
-                            <div <?php post_class( 'mythemes-page' ); ?>>
+                                <div <?php post_class( 'mythemes-page' ); ?>>
+                                    <div class="padded">
+                                        <!-- CONTENT -->
+                                        <?php the_content(); ?>
+                                    </div>
+                                 </div>
 
-                                <?php
-                                    $p_thumbnail = get_post( get_post_thumbnail_id( $post -> ID ) );
+                       
 
-                                    if( has_post_thumbnail() && isset( $p_thumbnail -> ID ) ){
-                                ?>
-                                        <div class="post-thumbnail">
-                                            <?php 
-                                                echo get_the_post_thumbnail( $post -> ID , 'mythemes-classic', array(
-                                                    'alt' => mythemes_post::title( $post -> ID, true )
-                                                ));
-                                                
-                                                $c_thumbanil = isset( $p_thumbnail -> post_excerpt ) ? esc_html( $p_thumbnail -> post_excerpt ) : null;
-
-                                                if( !empty( $c_thumbanil ) ){
-                                                    echo '<footer>' . $c_thumbanil . '</footer>';
-                                                }
-                                            ?>
-                                        </div>
-                                <?php
-                                    }
-                                ?>
-
-                                <!-- CONTENT -->
-                                <?php the_content(); ?>
-
-                                <div class="clearfix"></div>
-
-                                <?php
-                                    wp_link_pages( array( 
-                                        'before'        => '<div class="mythemes-paged-post"><span class="mythemes-pagination-title">' . __( 'Pages', 'cannyon' ) . ': </span>',
-                                        'after'         => '</div>',
-                                        'link_before'   => '<span class="mythemes-pagination-item">',
-                                        'link_after'    => '</span>'
-                                    ));
-                                ?>
-
-                                <div class="clearfix"></div>
-
-                            </div>
-
-                            <!-- COMMENTS -->
-                            <?php comments_template(); ?>
-
-                        </section>
-
-                    <?php
-                        /* RIGHT SIDEBAR */
-                        $mythemes_layout -> sidebar( 'right' );
-                    ?>
-                    
+                            </section>
                     </div>
                 </div>
             </div>

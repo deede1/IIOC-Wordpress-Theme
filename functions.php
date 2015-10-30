@@ -37,15 +37,14 @@ register_sidebar(array(
 	'before_title'  => '<h3>',
 	'after_title'   => '</h3>'
 ));
-
 function add_search_to_wp_menu ( $items, $args )
 {
 	if( 'header' === $args -> theme_location )
 	{
 		$items .= '<li class="menu-item search">';
-		$items .= '<form class="navbar-form navbar-right" role="search" method="get" action="' . get_bloginfo('home') . '/">';
+		$items .= '<form class="navbar-form" role="search" action="' . esc_url( home_url( '/' ) ) . '" method="get" id="searchform">';
 		$items .= '<div class="input-group add-on">';
-		$items .= '<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">';
+		$items .= '<input type="text" class="form-control" placeholder="Search" name="s" id="keywords">';
 		$items .= '<div class="input-group-btn">';
 		$items .= '<button class="btn btn-default" type="submit"><i class="icon-search-5"></i></button>';
 		$items .= '</div>';

@@ -1,9 +1,9 @@
 <?php
-    global $wp_customize, $mythemes_header_class;
+    global $wp_customize;
 
     /* BLOG TITLE & DESCRIPTION  */
     $title_label            = esc_html( get_theme_mod( 'mythemes-header-title-label' , __( 'Cannyon is a clean WordPress theme' , 'cannyon' ) ) );
-    $description_label      = esc_html( get_theme_mod( 'mythemes-header-description-label' , __( 'free WordPress theme developed by myThem.es' , 'cannyon' ) ) );
+    $description_label      = esc_html( get_theme_mod( 'mythemes-header-description-label' , __( 'freemium WordPress theme developed by myThem.es' , 'cannyon' ) ) );
 
     /* HEADER HEIGHT */
     $header_height          = absint( get_theme_mod( 'mythemes-header-height' , 400 ) );
@@ -25,11 +25,6 @@
     /* HEADER CUSTOMIZER */
     if( isset( $wp_customize ) ) {
 
-        /* HEADER LOGO */
-        $header_logo        = true;
-        $header_logo_       = esc_url( get_theme_mod( 'mythemes-logo' ) );
-        $header_logo_class  = empty( $header_logo_ ) ? 'hidden' : '';
-
         /* HEADER TITLE */
         $header_title       = true;
         $header_title_class = !(bool)get_theme_mod( 'mythemes-header-title', true ) ? 'hidden' : '';
@@ -50,11 +45,6 @@
     /* HEADER FRONTEND */
     else{
 
-        /* HEADER LOGO */
-        $header_logo_       = esc_url( get_theme_mod( 'mythemes-logo' ) );
-        $header_logo        = !empty( $header_logo_ );
-        $header_logo_class  = '';
-
         /* HEADER TITLE */
         $header_title       = (bool)get_theme_mod( 'mythemes-header-title', true );
         $header_title_class = '';
@@ -73,7 +63,53 @@
     }
 ?>
 
-<div class="mythemes-header mythemes-bkg-image overflow-wrapper <?php echo esc_attr( $mythemes_header_class ); ?>" style="height: <?php echo absint( $header_height ); ?>px;">
+<div class="mythemes-header parallax-container overflow-wrapper" style="height: <?php echo absint( $header_height ); ?>px;">
+
+    <?php
+        $header_img = esc_url( get_header_image() );
+
+        if( !empty( $header_img ) ){
+            echo '<div class="valign-cell-wrapper scene-wrapper">';
+            echo '<div class="valign-cell">';
+
+            echo '<div class="parallax" style="background-image: url(' . esc_url( $header_img ) . ');">';
+            echo '<img src="' . esc_url( $header_img ) . '" alt="' . __( 'Header Image', 'cannyon' ) . ' - ' . esc_attr( $title_label ) . '"/>';
+            echo '</div>';
+
+            echo '</div>';
+            echo '</div>';
+        }
+    ?>
+
+    <div class="valign-cell-wrapper mythemes-header-mask" style="background: rgba( <?php echo mythemes_tools::hex2rgb( esc_attr( $header_mask_color ) ); ?>, <?php echo floatval( $header_mask_opacity ); ?> );">
+
+        <!-- VERTICAL ALIGN CENTER -->
+        <div class="valign-cell">
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <?php
+
+                        /* HEADER TITLE */
+                        if( $header_title ){
+                            echo '<a class="header-title ' . esc_attr( $header_title_class ) . '" href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( $title_label . ' - ' . $description_label ) . '">';
+                            echo esc_html( $title_label );
+                            echo '</a>';
+                        }
+
+                        /* HEADER DESCRIPTION */
+                        if( $header_desc ){
+                            echo '<a class="header-description ' . esc_attr( $header_desc_class ) . '" href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( $title_label . ' - ' . $description_label ) . '">';
+                            echo esc_html( $description_label );
+                            echo '</a>';
+                        }
+                    ?>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+    <div class="mythemes-header mythemes-bkg-image overflow-wrapper <?php echo esc_attr( $mythemes_header_class ); ?>" style="height: <?php echo absint( $header_height ); ?>px;">
     <div style="background: rgba( <?php echo mythemes_tools::hex2rgb( esc_attr( $header_mask_color ) ); ?>, <?php echo floatval( $header_mask_opacity ); ?> );">
 
             <?php

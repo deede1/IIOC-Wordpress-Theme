@@ -73,7 +73,7 @@
     }
 ?>
 
-<div class="content">
+<div class="front-content">
     <div class="container">
         <div class="row">
 

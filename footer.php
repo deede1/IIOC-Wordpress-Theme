@@ -51,6 +51,7 @@
                             $youtube    = esc_url( get_theme_mod( 'mythemes-youtube', 'https://www.youtube.com/channel/UCu6Wv5Z104wOB0SpFcaGNow' ) );
                             $twitter    = esc_url( get_theme_mod( 'mythemes-twitter', 'https://twitter.com/#' ) );
                             $facebook   = esc_url( get_theme_mod( 'mythemes-facebook', 'https://www.facebook.com/#' ) );
+                            $instagram  = esc_url( get_theme_mod( 'mythemes-instagram', 'https://www.instagram.com/#' ) );
                             $rss        = esc_url( get_theme_mod( 'mythemes-rss', esc_url( get_bloginfo('rss2_url') ) ) );
 
                             if( isset( $wp_customize ) ) {
@@ -63,11 +64,17 @@
                                
                                 $rs_class   = empty( $rss ) ? 'hidden' : '';
 
+                                $inst_class   = empty( $instagram ) ? 'hidden' : '';
+
                                 $twitter    = empty( $twitter ) ? esc_url( home_url() ) : $twitter;
                               
                                 $facebook   = empty( $facebook ) ? esc_url( home_url() ) : $facebook;
                               
                                 $rss        = empty( $rss ) ? esc_url( home_url() ) : $rss;
+
+                                $instagram  = empty( $instagram ) ? esc_url( home_url() ) : $instagram;
+
+                                $youtube    = empty( $youtube ) ? esc_url( home_url() ) : $youtube;
                             }
                             else{
 
@@ -78,27 +85,32 @@
                                 $fk_class   = '';
                                
                                 $rs_class   = '';
+
+                                $inst_class  = '';
                             }
                         ?>
                         <div class="col-lg-12">
                             <?php
                                
                                  if( !empty( $youtube ) ){
-                                    echo '<a href="' . $youtube . '" class="icon-youtube ' . esc_attr( $yt_class ) . '" target="_blank"></a>';
+                                    echo '<a href="' . $youtube . '" class="icon-youtube ' . esc_attr( $yt_class ) . '" target="_blank" title="youtube"></a>';
                                 }
 
                                 if( !empty( $twitter ) ){
-                                    echo '<a href="' . $twitter . '" class="icon-twitter ' . esc_attr( $tw_class ) . '" target="_blank"></a>';
+                                    echo '<a href="' . $twitter . '" class="icon-twitter ' . esc_attr( $tw_class ) . '" target="_blank" title="twitter"></a>';
                                 }
                                
                               
                                 if( !empty( $facebook ) ){
-                                    echo '<a href="' . $facebook . '" class="icon-facebook ' . esc_attr( $fb_class ) . '" target="_blank"></a>';
+                                    echo '<a href="' . $facebook . '" class="icon-facebook ' . esc_attr( $fb_class ) . '" target="_blank" title="facebook"></a>';
                                 }
                                
+                                if( !empty( $instagram ) ){
+                                    echo '<a href="' . $instagram . '" class="icon-instagram ' . esc_attr( $inst_class  ) . '" target="_blank" title="instagram"></a>';
+                                }
                                
                                 if( !empty( $rss ) ){
-                                    echo '<a href="' . $rss . '" class="icon-rss ' . esc_attr( $rs_class ) . '" target="_blank"></a>';
+                                    echo '<a href="' . $rss . '" class="icon-rss ' . esc_attr( $rs_class ) . '" target="_blank" title="rss"></a>';
                                 }
                             ?>
                         </div>
