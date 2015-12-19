@@ -1,13 +1,19 @@
+<?php
 /*
-Template Name:page-template-main
-
+Template Name:page-template-blog
 */
-<?php get_header(); ?>
+
+get_header(); ?>
 
 
 
             <div class="content page-content" id="iioc-content">
                 <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h1 id="blog-title"></h1>
+                        </div>
+                    </div>
                     <div class="row">
                     <?php
                         global $mythemes_layout;

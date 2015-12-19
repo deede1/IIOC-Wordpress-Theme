@@ -22,53 +22,46 @@
         
     if( $items ){
 ?>
-    <div class="mythemes-white mythemes-default-content <?php echo esc_attr( $items_class ); ?>">
-        <div class="content">
-            <div class="container">
+<div class="mythemes-white mythemes-default-content <?php echo esc_attr( $items_class ); ?>">
+    <div class="content" id="content-cont">
+        <div class="container">
                 <!-- FEATURES -->
                 <aside class="row mythemes-header-items">
-
-                    <!-- FEATURE 1 -->
-                    <div class="col-sm-6 col-md-4 col-lg-4 header-item">
-                        <?php get_sidebar( 'front-page-header-first' ); ?>
+                   <!--Anouncment -->
+                   <div class="col-xs-12 header-item">
+                       <?php get_sidebar( 'front-page-header-announcement' ); ?>
+                   </div> 
+                   <!-- FEATURE 1 -->
+                   <div class="col-xs-12 col-md-4 col-lg-4 header-item">
+                    <?php get_sidebar( 'front-page-header-first' ); ?>
                     </div>
-
                     <!-- FEATURE 2 -->
-                    <div class="col-sm-6 col-md-4 col-lg-4 header-item">
+                    <div class="col-xs-12 col-md-4 col-lg-4 header-item">
                         <?php get_sidebar( 'front-page-header-second' ); ?>
                     </div>
-
                     <div class="clearfix visible-xs-block visible-sm-block"></div>
-
                     <!-- FEATURE 3 -->
-                    <div class="col-sm-6 col-md-4 col-lg-4 header-item">
+                    <div class="col-xs-12 col-md-4 col-lg-4 header-item">
                         <?php get_sidebar( 'front-page-header-third' ); ?>
                     </div>
+            </aside>
+            <aside class="row mythemes-header-items">
 
-                </aside>
-                <aside class="row mythemes-header-items">
+                <!-- FEATURE 4 -->
+                <div class="col-xs-12 col-md-4 header-item">
+                    <?php get_sidebar( 'front-page-header-fourth' ); ?>
+                </div>
 
-                    <!-- FEATURE 4 -->
-                    <div class="col-sm-6 col-md-4 col-lg-4 header-item">
-                        <?php get_sidebar( 'front-page-header-fourth' ); ?>
-                    </div>
+                <!-- FEATURE 5 -->
+                <div class="col-xs-12 col-md-4 header-item">
+                    <?php get_sidebar( 'front-page-header-fifth' ); ?>
+                </div>
 
-                    <!-- FEATURE 5 -->
-                    <div class="col-sm-6 col-md-4 col-lg-4 header-item">
-                        <?php get_sidebar( 'front-page-header-fifth' ); ?>
-                    </div>
-
-                    <div class="clearfix visible-xs-block visible-sm-block"></div>
-
-                    <!-- FEATURE 6 -->
-                    <div class="col-sm-6 col-md-4 col-lg-4 header-item">
-                        <?php get_sidebar( 'front-page-header-sixth' ); ?>
-                    </div>
-
-                </aside>
-            </div>
+                <div class="clearfix visible-xs-block visible-sm-block"></div>
+            </aside>
         </div>
     </div>
+</div>
 <?php
     }
 ?>

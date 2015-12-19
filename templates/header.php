@@ -6,7 +6,7 @@
     $description_label      = esc_html( get_theme_mod( 'mythemes-header-description-label' , __( 'freemium WordPress theme developed by myThem.es' , 'cannyon' ) ) );
 
     /* HEADER HEIGHT */
-    $header_height          = absint( get_theme_mod( 'mythemes-header-height' , 400 ) );
+    $header_height          = absint( get_theme_mod( 'mythemes-header-height' , 315 ) );
 
     /* HEADER MASK */
     $header_mask_color      = esc_attr( get_theme_mod( 'mythemes-header-mask-color', '#000000' ) );
@@ -135,12 +135,13 @@
                             <?php $j = 0; while ($slides -> have_posts())
                                 {
                                     $slides -> the_post();
-                            ?>    
-                                   
-                                        <div class="item <?php if($j == 0) { echo 'active'; }?>">
+                                    $link = get_post_custom_values('link')[0];
+                                    $duration = get_post_custom_values('duration')[0];
+                            ?>		
+                                        <div class="item <?php if($j == 0) { echo 'active'; }?>" data-interval="<?php echo $duration ?>">
                                             <?php the_post_thumbnail('slides'); ?>
                                             <div class="carousel-caption">
-                                                <h4><?php the_title();?></h4>
+                                               	<a href="<?php echo $link; ?>">&nbsp;</a>
                                             </div>
                                         </div>
                                    
@@ -161,23 +162,5 @@
                     <?php  wp_reset_postdata();  } ?>   
     </div>
 
-    <div class="valign-bottom-cell-wrapper header-button-wrapper">
-        <div class="valign-cell">
-        <?php
-            /* HEADER FIRST BUTTON */
-            if( $first_btn ){
-                echo '<a href="' . esc_url( $first_btn_url ) . '" class="btn first-btn header-button ' . esc_attr( $first_btn_class ) . '" title="' . esc_attr( $first_btn_description ) . '">';
-                echo esc_html( $first_btn_label );
-                echo '</a>';
-            }
-
-            /* HEADER SECOND BUTTON */
-            if( $second_btn ){
-                echo '<a href="' . esc_url( $second_btn_url ) . '" class="btn second-btn header-button ' . esc_attr( $second_btn_class ) . '" title="' . esc_attr( $second_btn_description ) . '">';
-                echo esc_html( $second_btn_label );
-                echo '</a>';
-            }
-        ?>
-        </div>
-    </div>
+   
 </div>

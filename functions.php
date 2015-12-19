@@ -29,8 +29,8 @@ register_sidebar(array(
 	'after_title'   => '</h3>'
 ));
 register_sidebar(array(
-	'id'            => 'front-page-header-sixth',
-	'name'          => __( 'Header - Sixth Front Page Sidebar' , 'iioc' ),
+	'id'            => 'front-page-header-announcement',
+	'name'          => __( 'Header - announcement section' , 'iioc' ),
 	'description'   => __( 'Content for right front page header Sidebar' , 'iioc' ),
 	'before_widget' => '<div id="%1$s" class="widget %2$s">',
 	'after_widget'  => '</div>',

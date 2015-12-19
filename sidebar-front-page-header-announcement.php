@@ -15,7 +15,7 @@
     }
 
     /* SIDEBAR */
-    if ( dynamic_sidebar( 'front-page-header-sixth' ) ){
+    if ( dynamic_sidebar( 'front-page-header-announcement' ) ){
         /* IF NOT EMPTY */    
     }
 

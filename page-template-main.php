@@ -1,8 +1,10 @@
-/*
-Template Name:page-template-main
+<?php
 
+/* 
+* Template Name:page-template-main
 */
-<?php get_header(); ?>
+
+get_header(); ?>
 
 <?php
     global $wp_customize;

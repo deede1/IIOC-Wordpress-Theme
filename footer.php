@@ -123,7 +123,7 @@
                             <div class="col-lg-12">
                                 <p>
                                     <span class="copyright"><?php echo mythemes_validate_copyright( get_theme_mod( 'mythemes-copyright' , sprintf( __( 'Copyright &copy; %s %s. Powered by %s.' , 'cannyon' ) , date( 'Y' ) , esc_html( get_bloginfo( 'name' ) ) , '<a href="http://wordpress.org/">WordPress</a>' ) ) ); ?></span>
-                                    <span><?php echo mythemes_options::get( 'author-link' ); ?></span>
+<!--                                     <span><?php echo mythemes_options::get( 'author-link' ); ?></span> -->
                                 </p>
                             </div>
                         </div>

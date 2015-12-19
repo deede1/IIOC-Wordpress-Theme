@@ -3,6 +3,8 @@
     <head>
         <meta charset="<?php bloginfo( 'charset' ); ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="The internet home of the Islamic Institute of Orange County, Masjid Omar AlFarouk." />
+	<meta name="keywords" content="masjid,mosque,islamic,institute,orange county,Anaheim,california" />
         <link rel="profile" href="http://gmpg.org/xfn/11" />
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
         <?php wp_head(); ?>
@@ -59,12 +61,26 @@
                                 echo '<div class="overflow-wrapper">';
                                 echo '<div class="valign-cell-wrapper left">';
                                 echo '<div class="valign-cell">';
-
+                                $map_marker_src = get_stylesheet_directory_uri() . '/images/map-marker-icon.png';
                                 /* BRANDING  */
-                                if( $mythemes_logo ){
-                                    echo '<a class="mythemes-logo ' . esc_attr( $mythemes_logo_class ) . '" href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( $blog_title . ' - ' . $blog_description ) . '">';
+                                if( $mythemes_logo )
+                                {
+                                    echo '<a class="mythemes-logo mythemes-img' . esc_attr( $mythemes_logo_class ) . '" href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( $blog_title . ' - ' . $blog_description ) . '">';
                                     echo '<img src="' . esc_url( $mythemes_logo_src ) . '" title="' . esc_attr( $blog_title . ' - ' . $blog_description ) . '"/>';
                                     echo '</a>';
+
+                                    echo '<div class="address-logo">
+                                            <a target="blank"
+                                                href="https://www.google.com/maps/place/Islamic+Institute+of+Orange+County/@33.8517899,-117.8909424,17z/data=!3m1!4b1!4m2!3m1!1s0x80dcd6661a25cedf:0xa55f22acf2c11eb2">
+                                                <span class="hidden-xs">
+                                                    Islamic Institute Of Orange County<br/>
+                                                    1220 N. State College Blvd.<br/>
+                                                    Anaheim, California 92806<br/>
+                                                </span>
+                                                <img class="visible-xs header-map-marker" src="' . $map_marker_src . '">
+                                            </a>
+                                          </div>';
+
                                 }
 
                                 /* BLOG TITLE */
@@ -174,7 +190,6 @@
 
                 </div>
             </div>
-
             <?php
                 $show_header    = false;
 
