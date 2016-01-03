@@ -93,24 +93,24 @@
                             <?php
                                
                                  if( !empty( $youtube ) ){
-                                    echo '<a href="' . $youtube . '" class="icon-youtube ' . esc_attr( $yt_class ) . '" target="_blank" title="youtube"></a>';
+                                    echo '<a href="' . $youtube . '" class="foundicon-youtube ' . esc_attr( $yt_class ) . '" target="_blank" title="youtube"></a>';
                                 }
 
                                 if( !empty( $twitter ) ){
-                                    echo '<a href="' . $twitter . '" class="icon-twitter ' . esc_attr( $tw_class ) . '" target="_blank" title="twitter"></a>';
+                                    echo '<a href="' . $twitter . '" class="foundicon-twitter ' . esc_attr( $tw_class ) . '" target="_blank" title="twitter"></a>';
                                 }
                                
                               
                                 if( !empty( $facebook ) ){
-                                    echo '<a href="' . $facebook . '" class="icon-facebook ' . esc_attr( $fb_class ) . '" target="_blank" title="facebook"></a>';
+                                    echo '<a href="' . $facebook . '" class="foundicon-facebook ' . esc_attr( $fb_class ) . '" target="_blank" title="facebook"></a>';
                                 }
                                
                                 if( !empty( $instagram ) ){
-                                    echo '<a href="' . $instagram . '" class="icon-instagram ' . esc_attr( $inst_class  ) . '" target="_blank" title="instagram"></a>';
+                                    echo '<a href="' . $instagram . '" class="foundicon-instagram ' . esc_attr( $inst_class  ) . '" target="_blank" title="instagram"></a>';
                                 }
                                
                                 if( !empty( $rss ) ){
-                                    echo '<a href="' . $rss . '" class="icon-rss ' . esc_attr( $rs_class ) . '" target="_blank" title="rss"></a>';
+                                    echo '<a href="' . $rss . '" class="foundicon-rss ' . esc_attr( $rs_class ) . '" target="_blank" title="rss"></a>';
                                 }
                             ?>
                         </div>
@@ -145,7 +145,7 @@
             echo '</div>';
 
             if( isset( $wp_customize ) && mythemes_core::exists_premium() ) {
-                echo '<a href="' . esc_url( mythemes_core::theme( 'premium' ) ) . '" target="_blank" class="mythemes-upgrade"><i class="icon-publish"></i>' . __( 'Upgrade to Premium' , 'cannyon' ) . '</a>';
+                echo '<a href="' . esc_url( mythemes_core::theme( 'premium' ) ) . '" target="_blank" class="mythemes-upgrade"><i class="foundicon-publish"></i>' . __( 'Upgrade to Premium' , 'cannyon' ) . '</a>';
             }
         ?>
 
